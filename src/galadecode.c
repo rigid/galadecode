@@ -152,6 +152,8 @@ static void filter_noise(short *signal, ssize_t samples, short threshold)
 double zerocrossing(short *signal, ssize_t samples)
 {
 	static ssize_t samples_since_last_zerocross;
+	static bool sampled_one_time;
+	
 	double frequency = 0;
 	ssize_t samples_left;
 	
@@ -162,11 +164,13 @@ double zerocrossing(short *signal, ssize_t samples)
 		/* negative -> positive zero crossing ? */
 		if(signal[0] < 0 && signal[1] >= 0)
 		{
-			if(samples_since_last_zerocross != 0)
+			if(samples_since_last_zerocross != 0 &&
+			   sampled_one_time)
 			{
 				frequency = (double) _g.samplerate/(double) samples_since_last_zerocross;
 			}
-			
+
+			sampled_one_time = true;
 			samples_since_last_zerocross = 0;
 		}
 
@@ -234,6 +238,8 @@ int main(int argc, char *argv[])
 	char *buffer = NULL;
 	/** hold current time */
 	struct timeval current;
+	/** current frequency (equals km/h) */
+	double freq = 0;
 	
 	_g.output_interval = 500;
 	_g.bytes_per_sample = 2;
@@ -304,13 +310,16 @@ int main(int argc, char *argv[])
 			
 			
 			/* find zero crossing */
-			double freq = zerocrossing((short *) buffer, 
+			double f = zerocrossing((short *) buffer, 
 			             bytes_read/_g.bytes_per_sample);
 
+			if(f > 0)
+				freq = f;
+			
 			/* output frequency */
-			if(freq != 0 && time_interval_passed(&current, _g.output_interval))
-			//if(freq != 0)
+			if(time_interval_passed(&current, _g.output_interval))	
 				printf("%f\n", freq);
+			
 		}
 		
 		/* close file */
