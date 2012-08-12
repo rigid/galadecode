@@ -17,16 +17,6 @@
 #include "config.h"
 
 
-/** available sample formats */
-typedef enum
-{
-	INT8,
-	UINT8,
-	INT16,
-	UINT16,
-	FLOAT,
-	DOUBLE,
-}SampleFormat;
 
 /** global variables to make local later, side effects y'know */
 struct
@@ -35,8 +25,6 @@ struct
 	char **files;
 	/** bytes per sample (1, 2, 3, 4, 8)*/
 	int bytes_per_sample;
-	/** sample format */
-	SampleFormat format;
 	/** samples per second */
 	int samplerate;
 	/** current size of buffer */
@@ -243,7 +231,6 @@ int main(int argc, char *argv[])
 	
 	_g.output_interval = 500;
 	_g.bytes_per_sample = 2;
-	_g.format = INT16;
 	_g.samplerate = 48000;
 	_g.bufsize = 4096*_g.bytes_per_sample;
 	
