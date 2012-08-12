@@ -4,15 +4,19 @@ GALAdecode
 
 Commandline utility to decode raw GALA signal from pipe
 
-Use a soundcard do capture the raw GALA/SVC/SCV squarewave
-signal (e.g. using the "rec" tool from http://sox.sourceforge.net/
+Use a soundcard to capture the raw GALA/SVC/SCV squarewave
+signal (e.g. using the "rec" tool from http://sox.sourceforge.net)
 and then pipe to galadecode.
 
-If you don't used 16 bit signed integer PCM format at 48kHz, you have to edit
+I used schematic/gala-to-audio.png and it works for me. USE IT AT OWN RISK!
+I'm not reliable for your toasted soundcard!
+
+If you don't use 16 bit signed integer PCM format at 48kHz, you have to edit
 the source.
 
-Example: rec -c1 -d - | galadecode -
+Example: 
 
+rec -c1 -r48000 -d - | galadecode -i 500 -
 
-See:
-* http://wiki.niftylight.de/galadecode
+This will output the current speed on stdout every 0.5 seconds.
+
