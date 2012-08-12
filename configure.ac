@@ -16,7 +16,7 @@ AC_CONFIG_MACRO_DIR([m4])
 #    information on the package
 # --------------------------------
 # infos
-PACKAGE_DESCRIPTION="CLI utility to decode raw GALA signal from pipe"
+PACKAGE_DESCRIPTION="CLI utility to decode raw GALA signal"
 AC_SUBST([PACKAGE_DESCRIPTION], [${PACKAGE_DESCRIPTION}], [package description])
 AC_DEFINE_UNQUOTED(PACKAGE_DESCRIPTION, "${PACKAGE_DESCRIPTION}", [package description])
 
