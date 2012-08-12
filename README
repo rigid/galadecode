@@ -1,0 +1,18 @@
+==========
+GALAdecode
+==========
+
+Commandline utility to decode raw GALA signal from pipe
+
+Use a soundcard do capture the raw GALA/SVC/SCV squarewave
+signal (e.g. using the "rec" tool from http://sox.sourceforge.net/
+and then pipe to galadecode.
+
+If you don't used 16 bit signed integer PCM format at 48kHz, you have to edit
+the source.
+
+Example: rec -c1 -d - | galadecode -
+
+
+See:
+* http://wiki.niftylight.de/galadecode
