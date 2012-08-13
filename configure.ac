@@ -5,7 +5,7 @@
 #    initialization
 # --------------------------------
 
-AC_INIT([galadecode], m4_esyscmd([./version.sh --short]),[http://github.com/niftylight/galadecode/issues], [galadecode], [http://wiki.niftylight.de/AC_PACKAGE_NAME])
+AC_INIT([galadecode], m4_esyscmd([./version.sh --short]),[http://github.com/rigid/galadecode/issues], [galadecode], [http://github.com/rigid//AC_PACKAGE_NAME])
 AC_COPYRIGHT([Copyright (C) 2012 Daniel Hiepler])
 
 AM_INIT_AUTOMAKE([color-tests dist-bzip2 parallel-tests silent-rules -Wall])
